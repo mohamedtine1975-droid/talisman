@@ -5,14 +5,17 @@ import { queueAPI } from '../services/api';
 import './HomePage.css';
 
 const SERVICES = [
-  { label: 'Coupe Simple', prix: 1500, badge: null },
-  { label: 'Dégradé Américain', prix: 2500, badge: 'Populaire' },
-  { label: 'Coupe + Barbe', prix: 3500, badge: 'Populaire' },
-  { label: 'Rasage Traditionnel', prix: 1800, badge: null },
-  { label: 'Twists / Dreadlocks', prix: 5000, badge: 'Nouveau' },
-  { label: 'Soin Cuir Chevelu', prix: 2000, badge: 'Nouveau' },
-  { label: 'Coupe Enfant', prix: 1000, badge: null },
-  { label: 'Forfait VIP', prix: 7500, badge: '★ Premium' },
+  { label: 'Coupe Simple', prix: 2500, badge: 'Populaire' },
+  { label: 'Coupe + Barbe', prix: 3000, badge: 'Populaire' },
+  { label: 'Dégradé Simple', prix: 3000, badge: null },
+  { label: 'Dégradé + Noir', prix: 5000, badge: '★ Premium' },
+  { label: 'Dégradé Enfant', prix: 2500, badge: null },
+  { label: 'Dégradé Enfant + Noir', prix: 3500, badge: null },
+  { label: 'Taper', prix: 5000, badge: null },
+  { label: 'Teinture Partielle', prix: 6000, badge: 'Nouveau' },
+  { label: 'Teinture Complète', prix: 10000, badge: 'Nouveau' },
+  { label: 'Teinture + Coiffure', prix: 13000, badge: '★ Premium' },
+  { label: 'Lavage', prix: 1500, badge: null },
 ];
 
 const AVIS = [
@@ -40,12 +43,12 @@ const HomePage = () => {
     <div className="home">
       {/* Bannière promo */}
       <div className="promo-bar">
-        ✦ Offre spéciale : Coupe + Barbe à <strong>3 500 CFA</strong> — Ce week-end uniquement
+        ✦ Korite approche — Réservez votre ticket en ligne, fini l'attente !
       </div>
 
       {/* Nav */}
       <nav className="home-nav">
-        <div className="nav-logo">TASLIMA</div>
+        <div className="nav-logo">TALISMAN</div>
         <div className={'nav-links ' + (mobileMenuOpen ? 'open' : '')}>
           <a href="#services">Services</a>
           <a href="#file">File live</a>
@@ -74,7 +77,7 @@ const HomePage = () => {
       <section className="hero">
         <div className="hero-grid-bg"></div>
         <div className="hero-content">
-          <div className="hero-badge">✦ Coiffure Prestige — Dakar, Sénégal</div>
+          <div className="hero-badge">✦ Talisman Coiffure — Dakar, Sénégal</div>
           <h1 className="hero-title">L'Art du<br /><span className="hero-italic">Style Parfait</span></h1>
           <p className="hero-sub">Maîtrise, précision et élégance au service de votre image. Réservez votre ticket en ligne, arrivez à temps.</p>
           <div className="hero-btns">
@@ -202,8 +205,8 @@ const HomePage = () => {
       <footer id="contact" className="home-footer">
         <div className="footer-inner">
           <div className="footer-brand">
-            <div className="footer-logo">TASLIMA</div>
-            <p>L'art de la coiffure masculine depuis 2016. Excellence et élégance pour l'homme moderne de Dakar.</p>
+            <div className="footer-logo">TALISMAN</div>
+            <p>L'art de la coiffure masculine à Dakar. Excellence et élégance pour l'homme moderne.</p>
           </div>
           <div className="footer-col">
             <h4>Services</h4>
@@ -213,19 +216,17 @@ const HomePage = () => {
           </div>
           <div className="footer-col">
             <h4>Contact</h4>
-            <a href="tel:+221770000000">+221 77 000 00 00</a>
-            <a href="mailto:bonjour@taslima.sn">bonjour@taslima.sn</a>
-            <span>Rue 10, Medina — Dakar</span>
+            <a href="tel:+221774300303">+221 77 430 03 03</a>
+            <span>Dakar, Sénégal</span>
           </div>
           <div className="footer-col">
             <h4>Horaires</h4>
-            <span>Lun — Ven : 08h — 20h</span>
-            <span>Samedi : 08h — 22h</span>
-            <span style={{ color: '#FF6B6B' }}>Dimanche : Fermé</span>
+            <span>Lun — Ven : 11h — 22h</span>
+            <span>Sam — Dim : 11h — 22h30</span>
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© 2025 Taslima Coiffure. Tous droits réservés.</span>
+          <span>© 2025 Talisman Coiffure. Tous droits réservés.</span>
           <span className="footer-made">✦ Made with pride in Dakar</span>
         </div>
       </footer>

@@ -79,7 +79,7 @@ const AdminPanel = () => {
 
       {/* Sidebar admin */}
       <aside className="admin-sidebar">
-        <div className="admin-logo">TASLIMA <span>ADMIN</span></div>
+        <div className="admin-logo">TALISMAN <span>ADMIN</span></div>
         <div className="admin-user">
           <div className="admin-avatar">{user?.nom?.substring(0, 2).toUpperCase()}</div>
           <div>

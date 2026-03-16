@@ -10,14 +10,17 @@ import PaymentModal from '../components/payment/PaymentModal';
 import './Dashboard.css';
 
 const SERVICES = [
-  { id: 'coupe_simple', label: 'Coupe Simple', prix: 1500, duree: '15 min' },
-  { id: 'degrade_americain', label: 'Dégradé Américain', prix: 2500, duree: '25 min', badge: 'Populaire' },
-  { id: 'coupe_barbe', label: 'Coupe + Barbe', prix: 3500, duree: '30 min', badge: 'Populaire' },
-  { id: 'rasage_traditionnel', label: 'Rasage Traditionnel', prix: 1800, duree: '20 min' },
-  { id: 'twists_dreadlocks', label: 'Twists / Dreadlocks', prix: 5000, duree: '60 min', badge: 'Nouveau' },
-  { id: 'soin_cuir_chevelu', label: 'Soin Cuir Chevelu', prix: 2000, duree: '25 min', badge: 'Nouveau' },
-  { id: 'coupe_enfant', label: 'Coupe Enfant', prix: 1000, duree: '10 min' },
-  { id: 'forfait_vip', label: 'Forfait VIP', prix: 7500, duree: '50 min', badge: '★ Premium' },
+  { id: 'coupe_simple', label: 'Coupe Simple', prix: 2500, duree: '15 min', badge: 'Populaire' },
+  { id: 'coupe_barbe', label: 'Coupe + Barbe', prix: 3000, duree: '30 min', badge: 'Populaire' },
+  { id: 'degrade_simple', label: 'Dégradé Simple', prix: 3000, duree: '25 min' },
+  { id: 'degrade_noir', label: 'Dégradé + Noir', prix: 5000, duree: '35 min', badge: '★ Premium' },
+  { id: 'degrade_enfant', label: 'Dégradé Enfant', prix: 2500, duree: '20 min' },
+  { id: 'degrade_enfant_noir', label: 'Dégradé Enfant + Noir', prix: 3500, duree: '30 min' },
+  { id: 'taper', label: 'Taper', prix: 5000, duree: '30 min' },
+  { id: 'teinture_partielle', label: 'Teinture Partielle', prix: 6000, duree: '40 min', badge: 'Nouveau' },
+  { id: 'teinture_complete', label: 'Teinture Complète', prix: 10000, duree: '60 min', badge: 'Nouveau' },
+  { id: 'teinture_coiffure', label: 'Teinture + Coiffure', prix: 13000, duree: '75 min', badge: '★ Premium' },
+  { id: 'lavage', label: 'Lavage', prix: 1500, duree: '10 min' },
 ];
 
 const Dashboard = () => {
@@ -86,7 +89,7 @@ const Dashboard = () => {
 
       {/* Sidebar */}
       <aside className="sidebar">
-        <div className="sidebar-logo">TASLIMA</div>
+        <div className="sidebar-logo">TALISMAN</div>
         <div className="sidebar-user">
           <div className="user-avatar">{user?.nom?.substring(0, 2).toUpperCase()}</div>
           <div>

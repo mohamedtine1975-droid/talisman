@@ -36,13 +36,16 @@ const ticketSchema = new mongoose.Schema({
     required: [true, 'Le service est obligatoire'],
     enum: [
       'coupe_simple',
-      'degrade_americain',
       'coupe_barbe',
-      'rasage_traditionnel',
-      'twists_dreadlocks',
-      'soin_cuir_chevelu',
-      'coupe_enfant',
-      'forfait_vip'
+      'degrade_simple',
+      'degrade_noir',
+      'degrade_enfant',
+      'degrade_enfant_noir',
+      'taper',
+      'teinture_partielle',
+      'teinture_complete',
+      'teinture_coiffure',
+      'lavage'
     ]
   },
   prixCFA: {
@@ -103,36 +106,45 @@ ticketSchema.pre('save', async function (next) {
 
 // ─── Prix par service ────────────────────────────────────
 ticketSchema.statics.PRIX = {
-  coupe_simple: 1500,
-  degrade_americain: 2500,
-  coupe_barbe: 3500,
-  rasage_traditionnel: 1800,
-  twists_dreadlocks: 5000,
-  soin_cuir_chevelu: 2000,
-  coupe_enfant: 1000,
-  forfait_vip: 7500
+  coupe_simple: 2500,
+  coupe_barbe: 3000,
+  degrade_simple: 3000,
+  degrade_noir: 5000,
+  degrade_enfant: 2500,
+  degrade_enfant_noir: 3500,
+  taper: 5000,
+  teinture_partielle: 6000,
+  teinture_complete: 10000,
+  teinture_coiffure: 13000,
+  lavage: 1500
 };
 
 ticketSchema.statics.DUREE = {
   coupe_simple: 15,
-  degrade_americain: 25,
   coupe_barbe: 30,
-  rasage_traditionnel: 20,
-  twists_dreadlocks: 60,
-  soin_cuir_chevelu: 25,
-  coupe_enfant: 10,
-  forfait_vip: 50
+  degrade_simple: 25,
+  degrade_noir: 35,
+  degrade_enfant: 20,
+  degrade_enfant_noir: 30,
+  taper: 30,
+  teinture_partielle: 40,
+  teinture_complete: 60,
+  teinture_coiffure: 75,
+  lavage: 10
 };
 
 ticketSchema.statics.LABELS = {
   coupe_simple: 'Coupe Simple',
-  degrade_americain: 'Dégradé Américain',
   coupe_barbe: 'Coupe + Barbe',
-  rasage_traditionnel: 'Rasage Traditionnel',
-  twists_dreadlocks: 'Twists / Dreadlocks',
-  soin_cuir_chevelu: 'Soin Cuir Chevelu',
-  coupe_enfant: 'Coupe Enfant',
-  forfait_vip: 'Forfait VIP'
+  degrade_simple: 'Dégradé Simple',
+  degrade_noir: 'Dégradé + Noir',
+  degrade_enfant: 'Dégradé Enfant',
+  degrade_enfant_noir: 'Dégradé Enfant + Noir',
+  taper: 'Taper',
+  teinture_partielle: 'Teinture Partielle',
+  teinture_complete: 'Teinture Complète',
+  teinture_coiffure: 'Teinture + Coiffure',
+  lavage: 'Lavage'
 };
 
 module.exports = mongoose.model('Ticket', ticketSchema);
