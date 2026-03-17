@@ -28,10 +28,10 @@ const Dashboard = () => {
   const { file, stats, dernierAppel, connecte } = useQueue();
   const navigate = useNavigate();
 
-  const [onglet, setOnglet] = useState('accueil'); // accueil | menu | file | mes-tickets
+  const [onglet, setOnglet] = useState('accueil'); // accueil | menu | file | mes-tickets | profil
   const [mesTickets, setMesTickets] = useState([]);
   const [ticketModal, setTicketModal] = useState(false);
-  const [paymentModal, setPaymentModal] = useState(null); // { ticket, service }
+  const [paymentModal, setPaymentModal] = useState(null); 
   const [ticketEnCours, setTicketEnCours] = useState(null);
 
   useEffect(() => {
@@ -47,7 +47,6 @@ const Dashboard = () => {
     setTicketEnCours(ticket);
     toast.success('Ticket ' + ticket.numero + ' créé !');
 
-    // Écouter les notifications pour ce ticket
     suivreMonTicket(ticket.numero, (data) => {
       toast.success(data.message, { duration: 6000 });
       if (data.statut === 'en_cours') {
@@ -57,7 +56,6 @@ const Dashboard = () => {
   };
 
   const commanderTicket = (service) => {
-    // Proposer paiement Wave/Orange Money ou paiement sur place
     setPaymentModal({ service });
   };
 
@@ -87,7 +85,7 @@ const Dashboard = () => {
         </div>
       )}
 
-      {/* Sidebar */}
+      {/* Sidebar Desktop */}
       <aside className="sidebar">
         <div className="sidebar-logo">TALISMAN</div>
         <div className="sidebar-user">
@@ -120,6 +118,14 @@ const Dashboard = () => {
 
       {/* Main content */}
       <main className="dash-main">
+        
+        {/* Header Mobile Uniquement */}
+        <header className="mobile-header">
+           <div className="mobile-logo">TALISMAN</div>
+           <button className="mobile-logout-btn" onClick={deconnexion} title="Se déconnecter">
+             Logout 🚪
+           </button>
+        </header>
 
         {/* ACCUEIL */}
         {onglet === 'accueil' && (
@@ -129,7 +135,6 @@ const Dashboard = () => {
               <button className="btn-gold" onClick={() => setTicketModal(true)}>+ Prendre un ticket</button>
             </div>
 
-            {/* Ticket en cours */}
             {ticketEnCours && (
               <div className="ticket-actif">
                 <div className="ticket-actif-label">Mon ticket actif</div>
@@ -143,7 +148,6 @@ const Dashboard = () => {
               </div>
             )}
 
-            {/* Stats rapides */}
             <div className="stats-grid">
               <div className="stat-card">
                 <div className="stat-label">En attente</div>
@@ -154,16 +158,15 @@ const Dashboard = () => {
                 <div className="stat-val" style={{ color: '#6EE9A5' }}>{stats.enCours}</div>
               </div>
               <div className="stat-card">
-                <div className="stat-label">Terminés aujourd'hui</div>
+                <div className="stat-label">Terminés</div>
                 <div className="stat-val">{stats.terminesAujourdhui}</div>
               </div>
               <div className="stat-card">
-                <div className="stat-label">Mes coupes totales</div>
+                <div className="stat-label">Mes coupes</div>
                 <div className="stat-val">{user?.totalCoupes || 0}</div>
               </div>
             </div>
 
-            {/* Derniers tickets de la file */}
             <div className="section-block">
               <h3>File d'attente en direct</h3>
               {file.length === 0
@@ -261,6 +264,22 @@ const Dashboard = () => {
             }
           </div>
         )}
+
+        {/* PROFIL / DECONNEXION MOBILE */}
+        {onglet === 'profil' && (
+          <div className="dash-content">
+             <div className="dash-header"><h1>Mon Compte</h1></div>
+             <div className="profile-section">
+                <div className="user-avatar-large">{user?.nom?.substring(0, 2).toUpperCase()}</div>
+                <h2>{user?.nom}</h2>
+                <p>{user?.telephone || user?.email}</p>
+                <div className="profile-stats">
+                   <div className="p-stat"><strong>{user?.totalCoupes || 0}</strong><span>Coupes réalisées</span></div>
+                </div>
+                <button className="btn-logout-full" onClick={deconnexion}>Se déconnecter</button>
+             </div>
+          </div>
+        )}
       </main>
 
       {/* Modals */}
@@ -270,20 +289,17 @@ const Dashboard = () => {
       {/* Navigation mobile bas d'écran */}
       <nav className="mobile-nav">
         {[
-          { id: 'accueil', icon: '⬛', label: 'Accueil' },
+          { id: 'accueil', icon: '🏠', label: 'Accueil' },
           { id: 'menu', icon: '✂', label: 'Menu' },
           { id: 'file', icon: '⏱', label: 'File' },
           { id: 'mes-tickets', icon: '🎫', label: 'Tickets' },
+          { id: 'profil', icon: '👤', label: 'Profil' },
         ].map(item => (
           <button key={item.id} className={onglet === item.id ? 'mobile-nav-btn active' : 'mobile-nav-btn'} onClick={() => setOnglet(item.id)}>
             <span className="mobile-nav-icon">{item.icon}</span>
             <span className="mobile-nav-label">{item.label}</span>
           </button>
         ))}
-        <button className="mobile-nav-btn" onClick={() => setTicketModal(true)}>
-          <span className="mobile-nav-icon">+</span>
-          <span className="mobile-nav-label">Ticket</span>
-        </button>
       </nav>
     </div>
   );
