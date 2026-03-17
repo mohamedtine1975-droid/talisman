@@ -121,3 +121,57 @@
 .bento-val { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; }
 .bento-val.gold { color: #C9A84C; }
 .bento-sub { font-size: 0.8rem; color: #555; margin-top: 0.4rem; }
+
+/* ── MOBILE NAV BAS ─────────────────────────────── */
+.admin-mobile-nav {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: #0D0D0D;
+  border-top: 1px solid rgba(201,168,76,0.2);
+  z-index: 999;
+}
+
+.admin-mobile-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 0.55rem 0.2rem;
+  background: transparent;
+  border: none;
+  color: #666;
+  font-family: inherit;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.admin-mobile-btn.active { color: #C9A84C; }
+.admin-mobile-btn.call-btn { color: #C9A84C; background: rgba(201,168,76,0.1); }
+.admin-mobile-btn:disabled { opacity: 0.5; }
+.admin-mobile-icon { font-size: 1.1rem; line-height: 1; }
+.admin-mobile-label { font-size: 0.6rem; letter-spacing: 0.5px; text-transform: uppercase; }
+
+/* ── RESPONSIVE MOBILE ──────────────────────────── */
+@media (max-width: 768px) {
+  .admin-panel { flex-direction: column; }
+  .admin-sidebar { display: none; }
+  .admin-main { width: 100%; padding-bottom: 65px; }
+  .admin-mobile-nav { display: flex; }
+  .admin-content { padding: 1rem; }
+  .admin-header { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+  .admin-header h1 { font-size: 1.4rem; }
+  .btn-call { width: 100%; padding: 0.7rem; }
+  .control-panel { grid-template-columns: 1fr 1fr; }
+  .cs-num { font-size: 1.8rem; }
+  .stats-bento { grid-template-columns: 1fr 1fr; }
+  .bento-card.big { grid-column: span 2; grid-row: span 1; }
+  .bento-val { font-size: 1.8rem; }
+  .admin-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .admin-table { min-width: 500px; font-size: 0.8rem; }
+  .td-tel { display: none; }
+  .td-date { display: none; }
+  .live-dot { font-size: 0.7rem; }
+  .appel-banner { font-size: 0.78rem; padding: 0.5rem 1rem; }
+}

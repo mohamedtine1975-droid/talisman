@@ -250,6 +250,30 @@ const AdminPanel = () => {
           </div>
         )}
       </main>
+
+      {/* Navigation mobile bas */}
+      <nav className="admin-mobile-nav">
+        {[
+          { id: 'file', icon: '⏱', label: 'File' },
+          { id: 'stats', icon: '📊', label: 'Stats' },
+          { id: 'tous', icon: '🎫', label: 'Tickets' },
+        ].map(item => (
+          <button key={item.id}
+            className={'admin-mobile-btn ' + (onglet === item.id ? 'active' : '')}
+            onClick={() => setOnglet(item.id)}>
+            <span className="admin-mobile-icon">{item.icon}</span>
+            <span className="admin-mobile-label">{item.label}</span>
+          </button>
+        ))}
+        <button className="admin-mobile-btn call-btn" onClick={appellerSuivant} disabled={appelLoading}>
+          <span className="admin-mobile-icon">🔔</span>
+          <span className="admin-mobile-label">{appelLoading ? '...' : 'Appeler'}</span>
+        </button>
+        <button className="admin-mobile-btn" onClick={deconnexion}>
+          <span className="admin-mobile-icon">↩</span>
+          <span className="admin-mobile-label">Sortir</span>
+        </button>
+      </nav>
     </div>
   );
 };
