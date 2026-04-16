@@ -1,10 +1,26 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const Ticket = require('../models/Ticket');
+const User = require('../models/User');
 const { proteger, autoriser } = require('../middleware/auth');
 const { getIO } = require('../socket/socketManager');
 
 const router = express.Router();
+
+const getClientFromToken = async (req) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith('Bearer ')) return null;
+
+  const token = authHeader.split(' ')[1];
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.id).select('-password');
+    return user?.actif ? user : null;
+  } catch (err) {
+    return null;
+  }
+};
 
 // ─── Helper validation ───────────────────────────────────
 const valider = (req, res) => {
@@ -54,6 +70,7 @@ router.post('/', [
     if (erreur) return;
 
     const { nomClient, telephoneClient, service, creneau } = req.body;
+    const authUser = await getClientFromToken(req);
 
     // Calculer la position dans la file
     const nbEnAttente = await Ticket.countDocuments({ statut: 'en_attente' });
@@ -67,8 +84,7 @@ router.post('/', [
       prixCFA: Ticket.PRIX[service],
       dureeEstimeeMin: Ticket.DUREE[service],
       position: nbEnAttente + 1,
-      // Lier au compte si connecté (optionnel via header Authorization)
-      client: req.user ? req.user._id : null
+      client: authUser ? authUser._id : null
     });
 
     // Émettre la mise à jour en temps réel

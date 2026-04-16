@@ -126,7 +126,7 @@ const res = await fetch('http://localhost:5000/api/tickets', {
   body: JSON.stringify({
     nomClient: 'Moussa Diallo',
     telephoneClient: '+221771234567',
-    service: 'degrade_americain',
+    service: 'degrade_simple',
     creneau: 'matin'
   })
 });

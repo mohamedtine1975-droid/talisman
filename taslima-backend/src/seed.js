@@ -42,7 +42,7 @@ const seed = async () => {
   // Créer tickets de test
   await Ticket.create({
     nomClient: clients[0].nom, telephoneClient: clients[0].telephone,
-    service: 'degrade_americain', prixCFA: 2500, dureeEstimeeMin: 25,
+    service: 'degrade_simple', prixCFA: 3000, dureeEstimeeMin: 25,
     position: 1, statut: 'en_cours', client: clients[0]._id,
     heureAppel: new Date(), heureDebut: new Date()
   });
